@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
     spec.license = "MIT"
 
     curl_version = '7.50.3'
-    spec.version = "#{curl_version}.0"
+    spec.version = "#{curl_version}.1"
     spec.source = { http: "https://curl.haxx.se/download/curl-#{curl_version}.zip" }
 
     ios_version = '8.0'
@@ -58,7 +58,7 @@ Pod::Spec.new do |spec|
 
     create_universal_headers() {
         mkdir -p build/include/curl
-        cp -r build/armv7/include build/include
+        cp -r build/armv7/include/curl/* build/include/curl/
         cp build/armv7/include/curl/curlbuild.h build/include/curl/curlbuild32.h
         cp build/arm64/include/curl/curlbuild.h build/include/curl/curlbuild64.h
         echo "
@@ -75,5 +75,6 @@ Pod::Spec.new do |spec|
     CMD
 
     spec.source_files = "curl-#{curl_version}/build/include/**/*.h"
+    spec.header_dir = 'curl'
     spec.ios.vendored_libraries = "curl-#{curl_version}/libcurl.a"
 end
