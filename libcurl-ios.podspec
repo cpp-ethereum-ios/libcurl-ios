@@ -9,8 +9,9 @@ Pod::Spec.new do |spec|
     spec.version = "#{curl_version}.0"
     spec.source = { http: "https://curl.haxx.se/download/curl-#{curl_version}.zip" }
 
+    ios_version = '8.0'
     spec.platform = :ios
-    spec.ios.deployment_target = '8.0'
+    spec.ios.deployment_target = "#{ios_version}"
 
     spec.prepare_command = <<-CMD
     build_for_ios() {
@@ -41,7 +42,7 @@ Pod::Spec.new do |spec|
         OTOOL=`xcrun -sdk $PLATFORM -find otool` \
         RANLIB=`xcrun -sdk $PLATFORM -find ranlib` \
         STRIP=`xcrun -sdk $PLATFORM -find strip` \
-        CPPFLAGS="-arch $ARCH -isysroot $SDKPATH" \
+        CPPFLAGS="-arch $ARCH -isysroot $SDKPATH -miphoneos-version-min=#{ios_version}" \
         LDFLAGS="-arch $ARCH -headerpad_max_install_names" \
         --host=$HOST \
         --prefix=$PREFIX \
