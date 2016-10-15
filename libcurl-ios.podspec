@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
     spec.license = "MIT"
 
     curl_version = '7.50.3'
-    spec.version = "#{curl_version}.1"
+    spec.version = "#{curl_version}.2"
     spec.source = { http: "https://curl.haxx.se/download/curl-#{curl_version}.zip" }
 
     ios_version = '8.0'
@@ -61,13 +61,13 @@ Pod::Spec.new do |spec|
         cp -r build/armv7/include/curl/* build/include/curl/
         cp build/armv7/include/curl/curlbuild.h build/include/curl/curlbuild32.h
         cp build/arm64/include/curl/curlbuild.h build/include/curl/curlbuild64.h
-        echo "
+        echo '
             #ifdef __LP64__
               #include "curlbuild64.h"
             #else
               #include "curlbuild32.h"
             #endif
-        " > build/include/curl/curlbuild.h
+        ' > build/include/curl/curlbuild.h
     }
 
     cd curl-#{curl_version}
