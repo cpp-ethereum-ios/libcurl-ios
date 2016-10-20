@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
     spec.license = "MIT"
 
     curl_version = '7.50.3'
-    spec.version = "#{curl_version}.2"
+    spec.version = "#{curl_version}.3"
     spec.source = { http: "https://curl.haxx.se/download/curl-#{curl_version}.zip" }
 
     ios_version = '8.0'
@@ -77,4 +77,5 @@ Pod::Spec.new do |spec|
     spec.source_files = "curl-#{curl_version}/build/include/**/*.h"
     spec.header_dir = 'curl'
     spec.ios.vendored_libraries = "curl-#{curl_version}/libcurl.a"
+    spec.ios.library = 'z'
 end
